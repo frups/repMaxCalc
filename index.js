@@ -32,7 +32,13 @@ app.get('/weight/:weightValue/reps/:noReps', (req, res) => {
         11: 0.72,
         12: 0.70,
     };
-    const maxRepWeight = weightValue*36/(37-noReps);
+    //const maxRepWeight = weightValue*(1+noReps/30);
+    const maxRepWeight = weightValue*(Math.pow(noReps, 0.1));
+    //const maxRepWeight = weightValue * (0.9849 + 0.0328*noReps);
+    //const maxRepWeight = weightValue * (1/(0.488 + 0.538*Math.pow(Math.E,(-0.055*noReps))));
+    //const maxRepWeight = weightValue * (0.988+0.0104*noReps+0.00190*noReps*noReps-0.0000584*noReps*noReps*noReps);
+    //const maxRepWeight = weightValue * (1/(1.013-Math.pow(0.0267123, noReps)));
+    //const maxRepWeight = weightValue*(1/(0.522+0.419*Math.pow(Math.E, -0.055*noReps)));
 
     for (const reps in nscaChart) {
         nscaChart[reps] *= maxRepWeight;
